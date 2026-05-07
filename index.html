@@ -1,89 +1,864 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" />
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <title>travel Website - procoder09</title>
-  </head>
-  <body>
-    <nav>
-      <div class="nav__header">
-        <div class="nav__logo">
-          <a href="#">
-            <h1 data-aos="zoom-in" data-aos-duration="1500">TravelPro</h1>
-          </a>
-        </div>
-        <div class="nav__menu__btn" id="menu-btn">
-          <i class="ri-menu-3-line"></i>
-        </div>
-      </div>
-      <ul class="nav__links" id="nav-links">
-        <li data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100"><a href="#">Home</a></li>
-        <li data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200"><a href="#">About</a></li>
-        <li data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300"><a href="#">Tours</a></li>
-        <li data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400"><a href="#">Contacts</a></li>
-        <li data-aos="fade-left" data-aos-duration="1500" data-aos-delay="500">
-          <button class="btn">
-            Contact Us
-            <span><i class="ri-arrow-right-long-line"></i></span>
-          </button>
-        </li>
-      </ul>
-    </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <title>Kingdom of Words | John Albert Salazar</title>
 
-    <header class="section__container header__container" id="home">
-      <div class="decore"><img src="Decore.png" alt=""></div>
-      <div class="header__image" data-aos="zoom-in-left" data-aos-duration="2500">
-        <img src="Traveller 1 (1).png" alt="header" />
-      </div>
-      <div class="header__content">
-        <h1 data-aos="fade-right" data-aos-duration="1500" data-aos-delay="700">Explore The World And Enjoy Your Trip</h1>
-        <p class="section__description" data-aos="flip-up" data-aos-duration="1500" data-aos-delay="900">
-          Discover breathtaking destinations and create unforgettable memories
-          with Advanto. From scenic landscapes to vibrant cities, your next
-          adventure awaits. Let's make your dream trip a reality!
-        </p>
-        <form action="/" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1100">
-          <div class="input__group">
-            <label for="location">
-              <span><i class="ri-map-pin-line"></i></span> Location
-            </label>
-            <input
-              type="text"
-              name="location"
-              placeholder="Sahara Desert, Algeria"
-            />
-          </div>
-          <div class="input__group">
-            <label for="date">
-              <span><i class="ri-calendar-line"></i></span> Date
-            </label>
-            <input
-              type="text"
-              name="location"
-              placeholder="18th, December 2024"
-            />
-          </div>
-          <button class="btn">
-            <i class="ri-search-line"></i>
-          </button>
-        </form>
-      </div>
-    </header>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-      AOS.init({offset:0});
-    </script>
-    <script>
-      const menuBtn = document.getElementById("menu-btn");
-      const navLinks = document.getElementById("nav-links");
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
-      menuBtn.addEventListener("click", () => {
-        navLinks.classList.toggle("open");
-      });
-    </script>
-  </body>
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --gold: #f5b942;
+      --gold-dim: rgba(245, 185, 66, 0.15);
+      --gold-glow: rgba(245, 185, 66, 0.5);
+      --dark: rgba(0, 0, 0, 0.7);
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
+    html {
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background:
+        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
+        url('https://i.ibb.co/d4VxW5wb/aa.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      overflow-x: hidden;
+      min-width: 320px;
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #111; }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 20px; }
+
+    /* ── NAVBAR ── */
+    nav {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      padding: 0 5%;
+      height: 68px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(18px, 4vw, 26px);
+      font-weight: 800;
+      color: var(--gold);
+      text-shadow: 0 0 12px var(--gold);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Desktop nav links */
+    .nav-links {
+      display: flex;
+      gap: clamp(14px, 2.5vw, 30px);
+      list-style: none;
+    }
+
+    .nav-links li a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: clamp(13px, 1.5vw, 15px);
+      transition: color 0.3s;
+      white-space: nowrap;
+    }
+
+    .nav-links li a:hover { color: var(--gold); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+      transition: 0.35s ease;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      z-index: 998;
+      flex-direction: column;
+      padding: 20px 0;
+      animation: slideDown 0.3s ease;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu li {
+      list-style: none;
+      text-align: center;
+    }
+
+    .mobile-menu li a {
+      display: block;
+      padding: 14px 20px;
+      color: white;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 500;
+      transition: color 0.3s, background 0.3s;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .mobile-menu li:last-child a { border-bottom: none; }
+    .mobile-menu li a:hover { color: var(--gold); background: rgba(245,185,66,0.07); }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 6% 60px;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      animation: fadeUp 1.2s ease;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 20px;
+      border: 1px solid var(--gold);
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(38px, 8vw, 78px);
+      line-height: 1.1;
+      color: var(--gold);
+      text-shadow: 0 0 10px var(--gold), 0 0 30px var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      font-size: clamp(15px, 2vw, 19px);
+      line-height: 1.85;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 38px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: clamp(12px, 2vw, 15px) clamp(24px, 4vw, 35px);
+      border: none;
+      border-radius: 50px;
+      font-size: clamp(14px, 1.8vw, 16px);
+      cursor: pointer;
+      transition: 0.35s;
+      text-decoration: none;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .download-btn {
+      background: var(--gold);
+      color: black;
+      box-shadow: 0 0 20px var(--gold-glow);
+    }
+
+    .download-btn:hover {
+      transform: translateY(-4px) scale(1.04);
+      box-shadow: 0 0 38px var(--gold-glow);
+    }
+
+    .contact-btn {
+      border: 2px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+    }
+
+    .contact-btn:hover {
+      background: var(--gold);
+      color: black;
+      transform: translateY(-4px);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: clamp(60px, 8vw, 90px) clamp(5%, 8%, 8%);
+    }
+
+    .section-title {
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(28px, 5vw, 50px);
+      color: var(--gold);
+      margin-bottom: 50px;
+      text-shadow: 0 0 12px var(--gold);
+    }
+
+    /* ── ABOUT ── */
+    .about-box {
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 24px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      padding: clamp(28px, 5%, 50px);
+    }
+
+    .about-box p {
+      font-size: clamp(15px, 1.8vw, 18px);
+      line-height: 2;
+      text-align: justify;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* ── LEVELS ── */
+    .levels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: 24px;
+    }
+
+    .level-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: clamp(20px, 3%, 30px);
+      transition: 0.4s;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+    }
+
+    .level-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--gold);
+      box-shadow: 0 8px 30px var(--gold-glow);
+    }
+
+    .level-num {
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      opacity: 0.7;
+      margin-bottom: 6px;
+    }
+
+    .level-card h3 {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      margin-bottom: 12px;
+      font-size: clamp(20px, 2.5vw, 26px);
+    }
+
+    .level-card p {
+      line-height: 1.75;
+      color: rgba(255,255,255,0.8);
+      font-size: clamp(14px, 1.5vw, 15px);
+    }
+
+    /* ── GALLERY ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: 20px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      border-radius: 18px;
+      transition: 0.4s;
+      border: 2px solid var(--border);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      display: block;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.03);
+      border-color: var(--gold);
+      box-shadow: 0 8px 30px var(--gold-glow);
+    }
+
+    /* ── CONTACT ── */
+    .contact-container {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 24px;
+      padding: clamp(30px, 5%, 50px);
+      text-align: center;
+      border: 1px solid var(--border);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-container h2 {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      font-size: clamp(24px, 4vw, 38px);
+      margin-bottom: 16px;
+    }
+
+    .contact-container > p {
+      font-size: clamp(14px, 1.8vw, 17px);
+      color: rgba(255,255,255,0.8);
+    }
+
+    .contact-info {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-info a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: clamp(14px, 1.8vw, 17px);
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      transition: 0.3s;
+    }
+
+    .contact-info a:hover {
+      background: var(--gold-dim);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .contact-info i {
+      color: var(--gold);
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 24px 20px;
+      background: #000;
+      color: rgba(255,255,255,0.45);
+      font-size: 14px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE BREAKPOINTS ── */
+
+    /* Tablet */
+    @media (max-width: 768px) {
+      body { background-attachment: scroll; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .hero { padding: 90px 5% 60px; }
+
+      .about-box p { text-align: left; }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+    }
+
+    /* Phone */
+    @media (max-width: 480px) {
+      nav { padding: 0 4%; }
+
+      .hero { padding: 80px 4% 50px; }
+      .hero-badge { font-size: 10px; letter-spacing: 1.5px; }
+
+      .buttons { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 300px; justify-content: center; }
+
+      .levels-grid { grid-template-columns: 1fr; }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .contact-info a {
+        font-size: 13px;
+        word-break: break-all;
+      }
+    }
+
+    /* Very small phones */
+    @media (max-width: 360px) {
+      .logo { font-size: 16px; }
+    }
+    /* ── DOWNLOAD MODAL ── */
+
+.download-modal{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.75);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:5000;
+
+  opacity:0;
+  visibility:hidden;
+  transition:0.35s ease;
+  padding:20px;
+}
+
+.download-modal.show{
+  opacity:1;
+  visibility:visible;
+}
+
+.modal-box{
+  width:100%;
+  max-width:420px;
+  background:rgba(15,15,15,0.95);
+  border:1px solid rgba(245,185,66,0.3);
+  border-radius:28px;
+  padding:40px 30px;
+  text-align:center;
+  position:relative;
+
+  box-shadow:
+  0 0 30px rgba(245,185,66,0.25),
+  0 0 60px rgba(245,185,66,0.08);
+
+  animation:modalPop 0.35s ease;
+}
+
+.modal-icon{
+  width:85px;
+  height:85px;
+  margin:0 auto 22px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(245,185,66,0.12);
+  border:2px solid rgba(245,185,66,0.35);
+}
+
+.modal-icon i{
+  font-size:38px;
+  color:var(--gold);
+}
+
+.modal-box h2{
+  font-family:'Cinzel', serif;
+  font-size:34px;
+  color:var(--gold);
+  margin-bottom:18px;
+  text-shadow:0 0 10px rgba(245,185,66,0.45);
+}
+
+.modal-box p{
+  font-size:15px;
+  line-height:1.9;
+  color:rgba(255,255,255,0.82);
+}
+
+.modal-btn{
+  margin-top:28px;
+  border:none;
+  background:var(--gold);
+  color:black;
+  font-weight:700;
+  padding:13px 34px;
+  border-radius:50px;
+  cursor:pointer;
+  transition:0.3s;
+  font-family:'Poppins', sans-serif;
+}
+
+.modal-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 20px rgba(245,185,66,0.4);
+}
+
+.close-modal{
+  position:absolute;
+  top:15px;
+  right:15px;
+  width:40px;
+  height:40px;
+  border:none;
+  border-radius:50%;
+  cursor:pointer;
+  background:rgba(255,255,255,0.05);
+  color:white;
+  font-size:18px;
+  transition:0.3s;
+}
+
+.close-modal:hover{
+  background:rgba(245,185,66,0.15);
+  color:var(--gold);
+}
+
+@keyframes modalPop{
+  from{
+    opacity:0;
+    transform:scale(0.8);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+/* MOBILE */
+@media(max-width:480px){
+
+  .modal-box{
+    padding:35px 22px;
+  }
+
+  .modal-box h2{
+    font-size:28px;
+  }
+
+  .modal-box p{
+    font-size:14px;
+  }
+
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">Kingdom of Words</div>
+
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#levels">Levels</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU DRAWER -->
+  <ul class="mobile-menu" id="mobileMenu">
+    <li><a href="#home"    onclick="closeMenu()">Home</a></li>
+    <li><a href="#about"   onclick="closeMenu()">About</a></li>
+    <li><a href="#levels"  onclick="closeMenu()">Levels</a></li>
+    <li><a href="#gallery" onclick="closeMenu()">Gallery</a></li>
+    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+  </ul>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-badge">2D RPG Educational Game</div>
+      <h1>KINGDOM OF WORDS</h1>
+      <p>
+        Explore magical worlds, complete exciting quests, interact with NPCs,
+        and master French vocabulary through immersive gameplay — designed for
+        Hospitality Management students.
+      </p>
+      <div class="buttons">
+       <a href="#" class="btn download-btn" id="openModalBtn">
+  <i class="fa-solid fa-download"></i> Download Game
+</a>
+        <a href="#contact" class="btn contact-btn">
+          <i class="fa-solid fa-envelope"></i> Contact Developer
+        </a>
+      </div>
+    </div>
+  </section>
+<!-- DOWNLOAD MODAL -->
+<div class="download-modal" id="downloadModal">
+
+  <div class="modal-box">
+
+    <button class="close-modal" id="closeModalBtn">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="modal-icon">
+      <i class="fa-solid fa-hourglass-half"></i>
+    </div>
+
+    <h2>Update Soon!</h2>
+
+    <p>
+      The download version of <strong>Kingdom of Words</strong>
+      is not available yet.
+      <br><br>
+      Please stay tuned for future updates and releases.
+
+    </p>
+     <br><br>
+      - John Salazar -
+    
+    </p>
+
+    <button class="modal-btn" id="closeModalBtn2">
+      Okay
+    </button>
+
+  </div>
+
+</div>
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section-title">About The Game</h2>
+    <div class="about-box">
+      <p>
+        Kingdom of Words: A 2D RPG Game for Learning French Language is an
+        interactive educational game developed by John Albert Salazar.
+        The purpose of this study is to develop an engaging and immersive
+        learning experience that helps Hospitality Management students learn
+        basic French vocabulary, phrases, and communication skills through
+        quest-based gameplay.
+        <br><br>
+        Unlike traditional learning methods, Kingdom of Words combines
+        entertainment and education into one magical adventure.
+        Players interact with NPCs, complete story-driven missions,
+        answer quizzes, solve challenges, and experience real-life hospitality
+        scenarios while learning French.
+        <br><br>
+        The game focuses on helping learners overcome common challenges in
+        learning French such as pronunciation, grammar rules, and unfamiliar
+        vocabulary. Through progressive gameplay and exciting RPG mechanics,
+        players gradually improve their communication skills while enjoying a
+        fantasy adventure.
+      </p>
+    </div>
+  </section>
+
+  <!-- LEVELS -->
+  <section id="levels">
+    <h2 class="section-title">Game Levels</h2>
+    <div class="levels-grid">
+
+      <div class="level-card">
+        <div class="level-num">LEVEL 01</div>
+        <h3>Polite Phrases</h3>
+        <p>Learn polite French phrases by selecting the correct language answers during interactive quests.</p>
+      </div>
+
+      <div class="level-card">
+        <div class="level-num">LEVEL 02</div>
+        <h3>Restaurant</h3>
+        <p>Explore restaurant vocabulary through drag-and-drop challenges using utensils and French food terms.</p>
+      </div>
+
+      <div class="level-card">
+        <div class="level-num">LEVEL 03</div>
+        <h3>Hotel Stay</h3>
+        <p>Experience hotel scenarios where players check in guests and learn hospitality-related French vocabulary.</p>
+      </div>
+
+      <div class="level-card">
+        <div class="level-num">LEVEL 04</div>
+        <h3>Travel & Directions</h3>
+        <p>Help travelers find directions while learning travel vocabulary and communication skills in French.</p>
+      </div>
+
+      <div class="level-card">
+        <div class="level-num">LEVEL 05</div>
+        <h3>Royal Tea Party</h3>
+        <p>Attend a royal tea party and practice formal French phrases, manners, and respectful communication.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <h2 class="section-title">Game Gallery</h2>
+    <div class="gallery-grid">
+      <img src="https://i.ibb.co/6dhV2DG/01.webp" alt="Game Screenshot 1" loading="lazy">
+      <img src="https://i.ibb.co/4Rj1wbNP/02.webp" alt="Game Screenshot 2" loading="lazy">
+      <img src="https://i.ibb.co/1Gqwtr3m/03.webp" alt="Game Screenshot 3" loading="lazy">
+      <img src="https://i.ibb.co/8LRtDpTS/04.webp" alt="Game Screenshot 4" loading="lazy">
+      <img src="https://i.ibb.co/hJ07vY2P/05.webp" alt="Game Screenshot 5" loading="lazy">
+      <img src="https://i.ibb.co/9mnxwxks/06.webp" alt="Game Screenshot 6" loading="lazy">
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-container">
+      <h2>Developer Information</h2>
+      <p>Developed by <strong>John Albert Salazar</strong></p>
+      <div class="contact-info">
+        <a href="mailto:johnalbertsalazar241@gmail.com">
+          <i class="fa-solid fa-envelope"></i>
+          johnalbertsalazar241@gmail.com
+        </a>
+        <a href="tel:09661920738">
+          <i class="fa-solid fa-phone"></i>
+          09661920738
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Kingdom of Words &nbsp;|&nbsp; Developed by John Albert Salazar
+  </footer>
+
+  <script>
+ 
+
+  // MOBILE MENU
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+
+  // Close menu on outside click
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  // DOWNLOAD MODAL
+  const openModalBtn = document.getElementById('openModalBtn');
+  const downloadModal = document.getElementById('downloadModal');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const closeModalBtn2 = document.getElementById('closeModalBtn2');
+
+  openModalBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    downloadModal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  });
+
+  function closeModal(){
+    downloadModal.classList.remove('show');
+    document.body.style.overflow = 'auto';
+  }
+
+  closeModalBtn.addEventListener('click', closeModal);
+  closeModalBtn2.addEventListener('click', closeModal);
+
+  // Close modal when clicking outside
+  downloadModal.addEventListener('click', (e) => {
+    if(e.target === downloadModal){
+      closeModal();
+    }
+  });
+
+  // ESC key close
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape'){
+      closeModal();
+    }
+  });
+
+</script>
+
+
+</body>
 </html>
